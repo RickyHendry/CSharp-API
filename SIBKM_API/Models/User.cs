@@ -9,17 +9,22 @@ namespace SIBKM_API.Models
 {
     public class User
     {
-        public User(int Id, string Password)
+        public User(ViewModels.UserVM user)
         {
-            this.Id = Id;
-            this.Password = Password;
+            this.Id = user.Id;
+            this.Password = user.Password;
+            this.Employee = Employee;
+        }
+
+        public User()
+        {
+
         }
 
         [Key]
         [ForeignKey("Employee")]
         public int Id { get; private set; }
         public string Password { get; private set; }
-
         public Employee Employee { get; set; }
     }
 }

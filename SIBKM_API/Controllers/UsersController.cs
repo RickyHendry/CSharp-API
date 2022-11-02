@@ -11,11 +11,11 @@ namespace SIBKM_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class UsersController : ControllerBase
     {
         MyContext myContext;
 
-        public EmployeesController(MyContext myContext)
+        public UsersController(MyContext myContext)
         {
             this.myContext = myContext;
         }
@@ -23,22 +23,22 @@ namespace SIBKM_API.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            var data = myContext.Employees.ToList();
+            var data = myContext.Users.ToList();
             return Ok(new { status = 200, message = "data has been collected", data = data });
         }
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var data = myContext.Employees.Find(id);
+            var data = myContext.Users.Find(id);
             return Ok(new { status = 200, message = "data has been collected", data = data });
         }
 
         [HttpPost]
-        public ActionResult Post(ViewModels.EmployeeVM employeeVM)
+        public ActionResult Post(ViewModels.UserVM userVM)
         {
-            Employee employee = new Employee(employeeVM);
-            myContext.Employees.Add(employee);
+            User user = new User(userVM);
+            myContext.Users.Add(user);
             var result = myContext.SaveChanges();
             if (result > 0)
                 return Ok(new { status = 200, message = "data has been collected" });
@@ -46,10 +46,10 @@ namespace SIBKM_API.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put(ViewModels.EmployeeVM employeeVM)
+        public ActionResult Put(ViewModels.UserVM userVM)
         {
-            Employee employee = new Employee(employeeVM);
-            myContext.Entry(employee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            User user = new User(userVM);
+            myContext.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             var result = myContext.SaveChanges();
             if (result > 0)
                 return Ok(new { status = 200, message = "data has been collected" });
@@ -59,8 +59,8 @@ namespace SIBKM_API.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            var data = myContext.Employees.Find(id);
-            myContext.Employees.Remove(data);
+            var data = myContext.Users.Find(id);
+            myContext.Users.Remove(data);
             var result = myContext.SaveChanges();
             if (result > 0)
                 return Ok(new { status = 200, message = "data has been collected" });

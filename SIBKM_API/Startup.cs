@@ -30,7 +30,7 @@ namespace SIBKM_API
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddDbContext<MyContext>(option =>
-                option.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+               option.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

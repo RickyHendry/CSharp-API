@@ -8,11 +8,16 @@ namespace SIBKM_API.Models
 {
     public class Employee
     {
-        public Employee(int Id, string FullName, string Email)
+        public Employee(ViewModels.EmployeeVM employee)
         {
-            this.Id = Id;
-            this.FullName = FullName;
-            this.Email = Email;
+            this.Id = employee.Id;
+            this.FullName = employee.FullName;
+            this.Email = employee.Email;
+        }
+
+        public Employee()
+        {
+
         }
 
         [Key]
